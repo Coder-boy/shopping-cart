@@ -1,103 +1,89 @@
-//Mobile phone plus button event handler
-const mobilePlusBtn = document.getElementById('mobile-plus-btn');
-mobilePlusBtn.addEventListener('click', function () {
-   const mobileAmount = 1219;
+function handlerProductChange(product , isIncrease) {
+    
+   const productCount = getInputValue(product);
+   
+   let productNewCount = productCount ;
+   if (isIncrease == true  ) {
+      productNewCount = productCount + 1;
+   }if (isIncrease == false && productCount > 0) {
+      productNewCount = productCount - 1;
+   }
+   document.getElementById( product +'-count').value = productNewCount;
+   let productTotal = 0;
+   if (product == 'phone') {
+      productTotal = productNewCount * 1219;
+   }if (product == 'case') {
+      productTotal = productNewCount * 59;
+   }
 
-   plusBtn("mobile-quantity");
-   plusPrice("mobile-price", mobileAmount);
-   PlusSubTotal("sub-total",mobileAmount);
-
-});
-
-// mobile phone minus button event handler 
-const    mobileMinusBtn = document.getElementById('minus-btn');
-mobileMinusBtn.addEventListener("click" , function () {
-   const mobileAmount = 1219; 
-
-   minusBtn("mobile-quantity");
-   minusPrice("mobile-price", mobileAmount);
-   minusSubTotal("sub-total",mobileAmount);
+   document.getElementById(product + '-total').innerText = productTotal;
+   calculateTotal();
  
+};
+
+function calculateTotal (params) {
   
+   const phoneCount = getInputValue("phone")
+   const caseCount = getInputValue("case")
    
-});
+   const totalPrice = phoneCount * 1219 + caseCount * 59;
+   document.getElementById("total-price").innerText = totalPrice;
 
-// mobile case plus button event handler
-const CasePlusBtn = document.getElementById('case-plus-btn');
-CasePlusBtn.addEventListener('click', function () {
-   const caseAmount = 59;
-   
-   plusBtn("case-quantity", "case-price")
-   plusPrice("case-price", caseAmount);
-   PlusSubTotal("sub-total", caseAmount);
-});
+   const tax = Math.round(totalPrice * 0.1);
+   document.getElementById("tax-amount").innerText = tax;
 
-// mobile case minus button event handler
-const caseMinusBtn = document.getElementById("case-minus-btn");
-caseMinusBtn.addEventListener('click', function () {
-   const caseAmount = 59;
-   minusBtn("case-quantity");
-   minusPrice("case-price",caseAmount);
-   minusSubTotal("sub-total",caseAmount);
-}); 
-
-// plus button function
-function plusBtn(id) {
-   const quantity = document.getElementById(id).value++;
+   const grandTotal = totalPrice + tax ;
+   document.getElementById("grand-total").innerText = grandTotal;
 
 };
 
-// plus price function
-function plusPrice(id, mobileAmount) {
-   const mobilePrice = document.getElementById(id).innerText;
-   const mobilePriceNumber = parseFloat(mobilePrice);
-   
-   const totalMobilePrice = mobilePriceNumber + mobileAmount;
-   document.getElementById(id).innerText = totalMobilePrice;
-};
-
-// plus total function
-function PlusSubTotal(id, mobileAmount) {
-   const subTotal = document.getElementById(id).innerText;
-   const subTotalNumber = parseFloat(subTotal);
-
-   const subTotalAmount = subTotalNumber + mobileAmount;
-   document.getElementById(id).innerText = subTotalAmount;
-
-   const total = document.getElementById("total").innerText;
-   const totalNumber =parseFloat(total);
-   const totalAmount = subTotalAmount;
-   document.getElementById("total").innerText = totalAmount;
+function getInputValue(product) {
+   const productInput = document.getElementById(product +"-count");
+   const productCount = parseInt(productInput.value);
+   return productCount;
 }
 
-// minus button function
-function minusBtn(id) {
-   const quantity = document.getElementById(id).value--;
 
-}
 
-// minus price function
-function minusPrice(id, mobileAmount) {
-   const mobilePrice = document.getElementById(id).innerText;
-   const mobilePriceNumber = parseFloat(mobilePrice);
 
+
+// function handlerMobileChange (isIncrease) {
+//    const phoneInput = document.getElementById("phone-count");
+//    const phoneCount = parseInt(phoneInput.value);
+//    let phoneNewCount = phoneCount ;
+//    if (isIncrease == true) {
+//       phoneNewCount = phoneCount + 1;
+//    }if (isIncrease == false) {
+//       phoneNewCount = phoneCount - 1;
+//    }
+//    phoneInput.value = phoneNewCount;
+//    const phoneTotal = phoneNewCount * 1219;
+//    document.getElementById("phone-total").innerText = phoneTotal;
+// }
+
+
+// const phoneIncrease = document.getElementById("phone-increase");
+// phoneIncrease.addEventListener("click" , function () {
+//    handlerProductChange ('phone',true);
+//    // const phoneInput = document.getElementById("phone-count");
+//    // const phoneCount = parseInt(phoneInput.value);
+//    // const phoneNewCount = phoneCount + 1;
+//    // phoneInput.value = phoneNewCount;
+//    // const phoneTotal = phoneNewCount * 1219;
+//    // document.getElementById("phone-total").innerText = phoneTotal;
+
+// });
+
+// const phoneDecrease = document.getElementById("phone-decrease");
+// phoneDecrease.addEventListener("click" , function () {
+//    handlerProductChange ('phone',false);
+//    // const phoneInput = document.getElementById("phone-count");
+//    // const phoneCount = parseInt(phoneInput.value);
+//    // const phoneNewCount = phoneCount - 1;
+//    // phoneInput.value = phoneNewCount;
+//    // const phoneTotal = phoneNewCount * 1219;
+//    // document.getElementById("phone-total").innerText = phoneTotal;
    
-   const totalMobilePrice = mobilePriceNumber -mobileAmount ;
-  
-   document.getElementById(id).innerText = totalMobilePrice;
-};
+// })
 
-// minus total function
-function minusSubTotal(id, mobileAmount) {
-   const subTotal = document.getElementById(id).innerText;
-   const subTotalNumber = parseFloat(subTotal);
-
-   const subTotalAmount = subTotalNumber - mobileAmount;
-   document.getElementById(id).innerText = subTotalAmount;
-
-   const total = document.getElementById("total").innerText;
-   const totalNumber =parseFloat(total);
-   const totalAmount = subTotalAmount;
-   document.getElementById("total").innerText = totalAmount;
-};
 

@@ -20,19 +20,16 @@
                   <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
-                       <div>
                         <h5>iPhone 11 128GB Black</h5>
-                        <h5>Price : $ 1219</h5>
-                       </div>
                      </div>
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="mobile-quantity" type="text" class="form-control text-center" value="0">
-                           <button id="mobile-plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handlerProductChange ('phone',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handlerProductChange ('phone',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$<span id="mobile-price">00</span></h5>
+                        <h5>$<span id="phone-total">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -42,19 +39,16 @@
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
                         <img src="images/product-2.png" alt="">
-                        <div>
-                           <h5>iPhone 11 Silicone Case - Black</h5>
-                           <h5>Price : $59</h5>
-                        </div>
+                        <h5>iPhone 11 Silicone Case - Black</h5>
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="case-minus-btn" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="case-quantity" type="text" class="form-control text-center" value="0">
-                           <button id="case-plus-btn" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handlerProductChange('case',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handlerProductChange('case',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$ <span id="case-price">00</span></h5>
+                        <h5>$<span id="case-total">59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -70,9 +64,9 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id="sub-total">00</span></h5>
-                        <h5>$0</h5>
-                        <h5>$<span id="total">00</span></h5>
+                        <h5>$ <span id="total-price">1,278</span></h5>
+                        <h5>$ <span id="tax-amount">0</span></h5>
+                        <h5>$ <span id="grand-total">1,278</span></h5>
                      </div>
                   </div>
                </div>
@@ -83,8 +77,7 @@
          </div>
       </div>
    </section>
-
-   <script src="script.js"></script>
 </body>
+
 
 </html>
